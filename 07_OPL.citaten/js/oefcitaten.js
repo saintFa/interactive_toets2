@@ -105,6 +105,15 @@ function showOneRandomQuote() {
 
 showOneRandomQuote();
 
+function renderQuotes(){
+    for (let i = 0; i < QUOTES.length; i++) {
+       console.log(quoteEl.innerHTML);
+    }
+}
+
+
+renderQuotes();
+
 
 //stap 1: bij opstart: toon een random citaat
 //stap 2: als user op de knop "van wie is dit citaat" klikt, toon author-info van het getoonde citaat
