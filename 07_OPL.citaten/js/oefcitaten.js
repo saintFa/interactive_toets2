@@ -80,16 +80,12 @@ let idsOfShownQuotes = [];
 
 function showAuthor() {
     const {author, info, life} = QUOTES.find(q => q.id === idsOfShownQuotes[0]);
-    quoteEl.innerHTML += `<div class="card my-2 p-2 ps-5">
-                              <h6>${author}</h6>
-                              <div>${info}</div>
-                              <div>Leefde van: ${life}</div>
-                          </div>`;
+    quoteEl.innerHTML += `<h6>${author}</h6>`;
     nextQuoteButtonEl.hidden = false;
     authorButtonEl.hidden = true;
 }
 
-function showOneRandomQuote() {
+function renderQuotes() {
     if (idsOfShownQuotes.length === QUOTES.length) idsOfShownQuotes = []; // means start over
 
     const availableQuotes = QUOTES.filter(q => !idsOfShownQuotes.includes(q.id));
@@ -99,9 +95,8 @@ function showOneRandomQuote() {
     console.log(idsOfShownQuotes, availableQuotes);
 
     for (i = 0; i < availableQuotes.length; i++) {
-        if(availableQuotes !== 0){
-            quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
-        }
+        quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
+
     }
 
     // quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
@@ -109,14 +104,6 @@ function showOneRandomQuote() {
     authorButtonEl.hidden = false;
 }
 
-showOneRandomQuote();
-
-function renderQuotes(){
-    quoteEl.innerHTML = quote
-        .map(entry => showOneAttraction(entry))
-        .join("");
-    listEl.innerHTML = `<div class="row">${attractionsHTML}\n</div>`;
-}
 
 renderQuotes();
 
