@@ -81,7 +81,7 @@ let idsOfShownQuotes = [];
 function showAuthor() {
     const {author, info, life} = QUOTES.find(q => q.id === idsOfShownQuotes[0]);
     quoteEl.innerHTML += `<h6>${author}</h6>`;
-
+    quoteEl.appendChild(`<h6>${author}</h6>`);
     nextQuoteButtonEl.hidden = false;
     authorButtonEl.hidden = true;
 }
@@ -97,7 +97,7 @@ function renderQuotes() {
 
     for (i = 0; i < availableQuotes.length; i++) {
         quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5>
-                                                            ${QUOTES.author}</div>`;
+                                                            ${QUOTES[i].author}</div>`;
     }
 
     // quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
