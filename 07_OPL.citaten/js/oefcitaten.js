@@ -98,7 +98,13 @@ function showOneRandomQuote() {
     idsOfShownQuotes = [nextQuote.id, ...idsOfShownQuotes];
     console.log(idsOfShownQuotes, availableQuotes);
 
-    quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
+    for (i = 0; i < availableQuotes.length; i++) {
+        if(availableQuotes !== 0){
+            quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
+        }
+    }
+
+    // quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
     nextQuoteButtonEl.hidden = true;
     authorButtonEl.hidden = false;
 }
@@ -106,11 +112,11 @@ function showOneRandomQuote() {
 showOneRandomQuote();
 
 function renderQuotes(){
-    for (let i = 0; i < QUOTES.length; i++) {
-       console.log(quoteEl.innerHTML);
-    }
+    quoteEl.innerHTML = quote
+        .map(entry => showOneAttraction(entry))
+        .join("");
+    listEl.innerHTML = `<div class="row">${attractionsHTML}\n</div>`;
 }
-
 
 renderQuotes();
 
