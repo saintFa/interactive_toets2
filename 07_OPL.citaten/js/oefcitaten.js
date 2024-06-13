@@ -76,33 +76,20 @@ const nextQuoteButtonEl = document.getElementById("nextQuoteButton");
 
 //state: changes on user action
 let idsOfShownQuotes = [];
-
+let authorsVisible = false;
 
 function showAuthor() {
-    const {author, info, life} = QUOTES.find(q => q.id === idsOfShownQuotes[0]);
-    quoteEl.innerHTML += `<h6>${author}</h6>`;
-    quoteEl.appendChild(`<h6>${author}</h6>`);
-    nextQuoteButtonEl.hidden = false;
-    authorButtonEl.hidden = true;
+    authorsVisible = !authorsVisible;
+    authorButtonEl.textContent = authorsVisible ? 'Hide author' : 'Show author';
+    renderQuotes();
 }
 
 function renderQuotes() {
-    if (idsOfShownQuotes.length === QUOTES.length) idsOfShownQuotes = []; // means start over
-
-    const availableQuotes = QUOTES.filter(q => !idsOfShownQuotes.includes(q.id));
-    const randomCitaatIndexInAvailableQuotes = Math.floor(Math.random() * availableQuotes.length);
-    const nextQuote = availableQuotes[randomCitaatIndexInAvailableQuotes];
-    idsOfShownQuotes = [nextQuote.id, ...idsOfShownQuotes];
-    console.log(idsOfShownQuotes, availableQuotes);
-
-    for (i = 0; i < availableQuotes.length; i++) {
-        quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5>
-                                                            ${QUOTES[i].author}</div>`;
-    }
-
-    // quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${QUOTES.find(q => q.id === idsOfShownQuotes[0]).text}</h5></div>`;
-    nextQuoteButtonEl.hidden = true;
-    authorButtonEl.hidden = false;
+    quoteEl.innerHTML = ''; // Clear any existing content
+    QUOTES.forEach(quote => {
+        quoteEl.innerHTML += `<div class="card my-2 p-2"><h5>${quote.text}</h5>
+                                ${authorsVisible ? `<h6>${quote.author}</h6>` : ''}</div>`;
+    });
 }
 
 
